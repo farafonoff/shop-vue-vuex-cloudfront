@@ -9,7 +9,7 @@ const fetchAvailableProducts = async (): Promise<Product[]> => {
 	return (
 		axios
 			//.get(`${API_PATHS.bff}/product/available/`)
-			.get(`${API_PATHS.product}`)
+			.get(`${API_PATHS.productAvailable}`)
 			.then(res => res.data)
 			.catch(e => {
 				console.error(e);
