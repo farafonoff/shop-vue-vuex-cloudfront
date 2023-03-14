@@ -36,7 +36,7 @@ export default Vue.extend({
 			products: [] as Product[],
 			isFetching: false,
 
-			uploaderS3Url: `${API_PATHS.import}/import`,
+			uploaderS3Url: `${API_PATHS.import}`,
 		};
 	},
 	created() {
