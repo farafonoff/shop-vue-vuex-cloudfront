@@ -1,4 +1,4 @@
-const API_PREFIX = 'https://86rq1or8mj.execute-api.us-east-2.amazonaws.com';
+const API_PREFIX = 'https://rpu7553ssd.execute-api.us-east-2.amazonaws.com';
 export const API_PATHS = {
 	product: `${API_PREFIX}/products`,
 	productAvailable: `${API_PREFIX}/products/available`,
