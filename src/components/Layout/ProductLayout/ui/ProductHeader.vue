@@ -47,9 +47,9 @@ export default Vue.extend({
 	components: { VAccountBtnMenu, VLanguagePickerBtnMenu },
 	methods: {
 		setSampleLogin: () => {
-			const defaultPair = 'farafonoff:TEST_PASSWORD';
-			alert(`Using default pair: ${defaultPair}`);
-			const encoded = Buffer.from(defaultPair).toString('base64');
+			const login = prompt('Please enter login (valid is "farafonoff")');
+			const password = prompt('Please enter login (valid is "TEST_PASSWORD")');
+			const encoded = Buffer.from(`${login}:${password}`).toString('base64');
 			localStorage.setItem('authorization_token', encoded);
 		},
 		logout: () => {
