@@ -8,6 +8,14 @@
 
 		<v-spacer></v-spacer>
 
+		<v-btn data-test-id="logout" icon large @click="logout()">
+			<v-icon>mdi-logout-variant</v-icon>
+		</v-btn>
+
+		<v-btn data-test-id="login" icon large @click="setSampleLogin()">
+			<v-icon>mdi-login-variant</v-icon>
+		</v-btn>
+
 		<v-account-btn-menu></v-account-btn-menu>
 
 		<v-btn data-test-id="cart-link" to="/cart" icon large>
@@ -37,6 +45,18 @@ export default Vue.extend({
 		cartCountBadge: Number,
 	},
 	components: { VAccountBtnMenu, VLanguagePickerBtnMenu },
+	methods: {
+		setSampleLogin: () => {
+			const login = prompt('Please enter login (valid is "farafonoff")');
+			const password = prompt('Please enter login (valid is "TEST_PASSWORD")');
+			const encoded = Buffer.from(`${login}:${password}`).toString('base64');
+			localStorage.setItem('authorization_token', encoded);
+		},
+		logout: () => {
+			localStorage.removeItem('authorization_token');
+			alert('logged out');
+		},
+	},
 });
 </script>
 

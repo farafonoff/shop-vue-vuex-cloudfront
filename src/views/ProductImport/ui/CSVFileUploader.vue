@@ -56,23 +56,30 @@ const fetchPresignedS3Url = (url: string, fileName: string) => {
 		params: {
 			name: encodeURIComponent(fileName),
 		},
+		headers: {
+			authorization: `Basic ${localStorage.getItem('authorization_token')}`,
+		},
 	});
 };
 
 const uploadFileBy = async (url: string, file: File) => {
-	const destUrl = await fetchPresignedS3Url(url, file.name);
+	try {
+		const destUrl = await fetchPresignedS3Url(url, file.name);
 
-	console.info('Uploading to: ', destUrl.data);
+		console.info('Uploading to: ', destUrl.data);
 
-	// save
-	const result = await fetch(destUrl.data, {
-		method: 'PUT',
-		body: file,
-	});
+		// save
+		const result = await fetch(destUrl.data, {
+			method: 'PUT',
+			body: file,
+		});
 
-	console.info('Result: ', result);
+		console.info('Result: ', result);
 
-	return result;
+		return result;
+	} catch (serverError) {
+		alert(`Please login. Error message: ${(serverError as any).message}`);
+	}
 };
 
 type Data = {
