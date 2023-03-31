@@ -20,8 +20,20 @@ const fetchOrderById = (id: string) => {
 
 const fetchOrders = async (): Promise<Order[]> => {
 	return axios
-		.get(`${API_PATHS.order}/order`)
-		.then(res => res.data)
+		.get(`${API_PATHS.order}/orders`)
+		.then(res => res.data.data.orders)
+		.then(items => {
+			const result = items.map((item: Order) => {
+				item.items = item.cart.items;
+				item.address = item.delivery.address;
+				item.statusHistory = [
+					{ status: item.status, timestamp: '', comment: '' },
+				];
+				return item;
+			});
+			console.log(result);
+			return result;
+		})
 		.catch(e => {
 			console.error(e);
 			// << !!! mocks if any error !!!
@@ -41,7 +53,11 @@ const changeOrderStatus = (orderId: string, data: ChangeOrderStatusParams) => {
 };
 
 const create = (order: Omit<Order, 'statusHistory'>) => {
-	return axios.put(`${API_PATHS.order}/order`, order);
+	return axios.post(`${API_PATHS.cart}/profile/cart/checkout`, order, {
+		headers: {
+			Authorization: `Basic ${localStorage.getItem('authorization_token')}`,
+		},
+	});
 };
 
 export const ordersApi = {
