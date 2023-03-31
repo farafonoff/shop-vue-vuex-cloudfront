@@ -5,7 +5,9 @@ export const API_PATHS = {
 	postProduct: `${API_PREFIX}/products`,
 	import: 'https://5m5sjb494d.execute-api.us-east-2.amazonaws.com/import',
 
-	order: 'http://localhost:4000/api',
+	order:
+		'https://tfamxg6rwiiphnvkv36k6go4sq0erlnl.lambda-url.us-east-2.on.aws/api',
 	bff: 'https://.execute-api.eu-west-1.amazonaws.com/dev',
-	cart: 'http://localhost:4000/api',
+	cart:
+		'https://tfamxg6rwiiphnvkv36k6go4sq0erlnl.lambda-url.us-east-2.on.aws/api',
 };
