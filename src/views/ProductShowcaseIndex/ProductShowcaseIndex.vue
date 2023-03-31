@@ -40,6 +40,7 @@
 								@increment="handleProductIncrement(product)"
 								@decrement="handleProductDecrement(product.id)"
 								:maxCount="product.count"
+								:initialCount="getInitialProductCount(product)"
 							></v-add-product-to-cart>
 						</v-card-actions>
 					</v-card>
@@ -57,6 +58,7 @@ import { VAddProductToCart } from '@/components/AddProductToCart';
 import { Product } from '@/models/product';
 import { productApi } from '@/api/product-api';
 import { formatter as priceFormatter } from '@/libs/price';
+import { CartItem } from '@/models/cart-item';
 
 export default Vue.extend({
 	name: 'ProductShowcaseIndex',
@@ -94,6 +96,14 @@ export default Vue.extend({
 
 		handleProductDecrement(productId: string) {
 			this.$store.dispatch('cart/removeProductFromCart', productId);
+		},
+
+		getInitialProductCount(product: Product) {
+			return (
+				this.$store.state?.cart?.cartItems?.find(
+					(item: CartItem) => item.product.id === product.id
+				)?.count || 0
+			);
 		},
 	},
 });

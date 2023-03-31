@@ -7,7 +7,11 @@ import { CartItem } from '@/models/cart-item';
 
 interface FetchCartResponse {
 	data: {
-		data: CartItem;
+		data: {
+			cart: {
+				items: CartItem[];
+			};
+		};
 	};
 }
 
