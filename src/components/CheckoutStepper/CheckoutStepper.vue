@@ -156,7 +156,14 @@ export default Vue.extend({
 					productId: cart.product.id,
 					count: cart.count,
 				})),
+				delivery: {
+					address: this.address,
+				},
+				payment: {
+					address: this.address,
+				},
 				address: this.address,
+				comments: this.address.comment,
 			};
 
 			ordersApi

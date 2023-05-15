@@ -26,6 +26,9 @@ export interface StatusHistory {
 
 export interface Order {
 	id?: string;
+	cart?: any;
+	delivery?: any;
+	status?: any;
 	address: Address;
 	items: unknown[]; // TODO: find exact
 	statusHistory: StatusHistory[];
